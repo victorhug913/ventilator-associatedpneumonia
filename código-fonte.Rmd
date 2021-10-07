@@ -1,0 +1,76 @@
+---
+title: "Pneumonia associada à ventilação mecânica - Análise de fatores de risco"
+output: github_document
+---
+
+## As análises abaixo relacionam as variáveis com o risco de desenvolvimento de PAV.
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd('C:/');
+require(ggplot2);
+require(rmarkdown);
+require(DT);
+require(epitools);
+require(questionr);
+base <- read.csv('Basededados1.csv')
+df <- base[base$VM == "Sim", ];
+QuiQuadradoCompleto = function (i,d) {
+  Tabela <- table(d,df$PAV);
+  print(Tabela);
+  Qui = chisq.test(Tabela);
+  print(Qui);
+  risco <- odds.ratio(Tabela, level = 0.95);
+  print(risco);
+  print("Abaixo, há um resumo quanto ao tema acima como fator")
+  summary(as.factor(d))
+}
+df$PAV <- "Não PAV";
+df$PAV[df$Tipo.Infecção.Hospitalar>="Pneumonia associada a VM"] <- "PAV";
+```
+```{r dados, echo=FALSE}
+summary(as.numeric(df$Idade))
+summary(as.numeric(df$Score.SAPS))
+print("A tabela abaixo diz respeito a análise quanto ao sexo:")
+QuiQuadradoCompleto(df$VM,df$Sexo);
+df$Tempo.VM[df$Dias.VM>=10] <- "Mais de 10 dias";
+df$Tempo.VM[df$Dias.VM<10] <- "Até 10 dias";
+df$Tempo.VM[df$Dias.VM==0] <- "Até 10 dias";
+df$Tempo.VM[df$Dias.VM=="-"] <- "Até 10 dias";
+print("A tabela abaixo diz respeito a análise quanto ao tempo de VM:")
+QuiQuadradoCompleto(df$VM,df$Tempo.VM);
+df$Idoso[df$Idade<60] <- "1Não Idoso";
+df$Idoso[df$Idade>=60] <- "2Idoso";
+print("A tabela abaixo diz respeito a análise quanto a idade:")
+QuiQuadradoCompleto(df$VM,df$Idoso);
+df$Covid19 <- "1Não Covid-19";
+df$Covid19[df$UTI=="HMSJ3"] <- "2Covid-19";
+df$Covid19[df$UTI=="HMSJ4"] <- "2Covid-19";
+print("A tabela abaixo diz respeito a análise quanto a infecção por Covid-19:")
+QuiQuadradoCompleto(df$VM,df$Covid19);
+print("A tabela abaixo diz respeito a análise quanto a DMID:")
+QuiQuadradoCompleto(df$VM,df$DMID);
+print("A tabela abaixo diz respeito a análise quanto a DMNID:")
+QuiQuadradoCompleto(df$VM,df$DMNID);
+print("A tabela abaixo diz respeito a análise quanto a DPOC Não Termial:")
+QuiQuadradoCompleto(df$VM,df$DPOC.Não.Terminal);
+print("A tabela abaixo diz respeito a análise quanto a Etilismo:")
+QuiQuadradoCompleto(df$VM,df$Etilismo);
+print("A tabela abaixo diz respeito a análise quanto a Fibrilação atrial crônica:")
+QuiQuadradoCompleto(df$VM,df$Fibrilacao.Atrial.Crônica);
+print("A tabela abaixo diz respeito a análise quanto a Hipertensão Arterial Sistêmica:")
+QuiQuadradoCompleto(df$VM,df$Hipertensão.Arterial.Sistêmica);
+print("A tabela abaixo diz respeito a análise quanto a ICC CF:")
+QuiQuadradoCompleto(df$VM,df$ICC.CF);
+print("A tabela abaixo diz respeito a análise quanto a IRC Não Dialítica:")
+QuiQuadradoCompleto(df$VM,df$IRC.Não.Dialítica);
+print("A tabela abaixo diz respeito a análise quanto a Obesidade:")
+QuiQuadradoCompleto(df$VM,df$Obesidade);
+print("A tabela abaixo diz respeito a análise quanto a Tabagismo:")
+QuiQuadradoCompleto(df$VM,df$Tabagismo);
+print("A tabela abaixo diz respeito a análise quanto a câncer:")
+QuiQuadradoCompleto(df$VM,df$Paciente.Câncer);
+print("A tabela abaixo diz respeito a análise quanto a paciente crônico:")
+QuiQuadradoCompleto(df$VM,df$Paciente.Crônico);
+print("A tabela abaixo diz respeito a análise quanto a reinternação:")
+QuiQuadradoCompleto(df$VM,df$Reinternação);
+```
