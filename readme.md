@@ -3,14 +3,6 @@ Pneumonia associada à ventilação mecânica - Análise de fatores de risco
 
 ## As análises abaixo relacionam as variáveis com o risco de desenvolvimento de PAV.
 
-    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   13.00   55.00   65.00   63.34   74.00  104.00
-
-    ## Warning in summary(as.numeric(df$Score.SAPS)): NAs introduzidos por coerção
-
-    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##   25.00   45.00   54.00   56.08   65.00  118.00       4
-
     ## [1] "A tabela abaixo diz respeito a análise quanto ao sexo:"
 
     ##            
@@ -91,7 +83,7 @@ Pneumonia associada à ventilação mecânica - Análise de fatores de risco
     ##     Até 10 dias Mais de 10 dias 
     ##            1324             603
 
-    ## [1] "A tabela abaixo diz respeito a análise quanto a idade:"
+    ## [1] "A tabela abaixo diz respeito a análise quanto a idade (Considera-se idosos pacientes com 60 ou mais anos.):"
 
     ##             
     ## d            Não PAV  PAV
@@ -714,24 +706,3 @@ Pneumonia associada à ventilação mecânica - Análise de fatores de risco
 
     ##  Não  Sim 
     ## 1755  172
-
-    ## Carregando pacotes exigidos: mfx
-
-    ## Carregando pacotes exigidos: sandwich
-
-    ## Carregando pacotes exigidos: lmtest
-
-    ## Carregando pacotes exigidos: zoo
-
-    ## 
-    ## Attaching package: 'zoo'
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     as.Date, as.Date.numeric
-
-    ## Carregando pacotes exigidos: MASS
-
-    ## Carregando pacotes exigidos: betareg
-
-    ## Carregando pacotes exigidos: readr

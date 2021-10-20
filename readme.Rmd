@@ -23,8 +23,6 @@ df$PAV <- "Não PAV";
 df$PAV[df$Tipo.Infecção.Hospitalar>="Pneumonia associada a VM"] <- "PAV";
 ```
 ```{r dados, echo=FALSE}
-summary(as.numeric(df$Idade))
-summary(as.numeric(df$Score.SAPS))
 print("A tabela abaixo diz respeito a análise quanto ao sexo:")
 QuiQuadradoCompleto(df$VM,df$Sexo);
 df$Tempo.VM[df$Dias.VM>=10] <- "Mais de 10 dias";
@@ -35,7 +33,7 @@ print("A tabela abaixo diz respeito a análise quanto ao tempo de VM:")
 QuiQuadradoCompleto(df$VM,df$Tempo.VM);
 df$Idoso[df$Idade<60] <- "1Não Idoso";
 df$Idoso[df$Idade>=60] <- "2Idoso";
-print("A tabela abaixo diz respeito a análise quanto a idade:")
+print("A tabela abaixo diz respeito a análise quanto a idade (Considera-se idosos pacientes com 60 ou mais anos.):")
 QuiQuadradoCompleto(df$VM,df$Idoso);
 df$Covid19 <- "1Não Covid-19";
 df$Covid19[df$UTI=="HMSJ3"] <- "2Covid-19";
@@ -68,6 +66,4 @@ print("A tabela abaixo diz respeito a análise quanto a paciente crônico:")
 QuiQuadradoCompleto(df$VM,df$Paciente.Crônico);
 print("A tabela abaixo diz respeito a análise quanto a reinternação:")
 QuiQuadradoCompleto(df$VM,df$Reinternação);
-require(mfx)
-require(readr)
 ```
